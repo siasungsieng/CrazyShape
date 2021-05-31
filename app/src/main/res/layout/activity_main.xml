@@ -15,7 +15,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/cover"
         app:layout_constraintBottom_toTopOf="@+id/imgNext"
-        app:layout_constraintVertical_chainStyle="spread"/>
+        app:layout_constraintVertical_chainStyle="spread" />
 
     <ImageView
         android:id="@+id/imgNext"
