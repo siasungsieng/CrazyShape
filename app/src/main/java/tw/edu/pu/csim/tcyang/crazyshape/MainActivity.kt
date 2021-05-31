@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 public final class MyAppGlideModule : AppGlideModule()
 
 class MainActivity : AppCompatActivity() {
-    var Flog:Int = 0
+    var Flag:Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
 
             .override(800, 600)
 
-            .into(imageTitle)
+            .into(imgTitle)
         RndShape()
 
         Toast.makeText(baseContext, "作者：謝純善", Toast.LENGTH_LONG).show()
@@ -30,9 +30,11 @@ class MainActivity : AppCompatActivity() {
         imgNext.setOnLongClickListener(object : View.OnLongClickListener {
             override fun onLongClick(p0: View?): Boolean {
                 intent = Intent(this@MainActivity, GameActivity::class.java).apply {
-                    putExtra("形狀",Flog)
+                    putExtra("形狀",Flag)
                 }
-                startActivity(intent)
+
+                //startActivity(intent)
+                startActivityForResult(intent,99)
                 return true
             }
         })
@@ -45,12 +47,23 @@ class MainActivity : AppCompatActivity() {
          })
     }
     fun RndShape() {
-        Flog = (1..4).random()
-        when (Flog) {
+        Flag = (1..4).random()
+        when (Flag) {
             1 -> imgNext.setImageResource(R.drawable.circle)
-            2 -> imgNext.setImageResource(R.drawable.star)
-            3 -> imgNext.setImageResource(R.drawable.triangle)
-            4 -> imgNext.setImageResource(R.drawable.square)
+            2 -> imgNext.setImageResource(R.drawable.square)
+            3 -> imgNext.setImageResource(R.drawable.star)
+            4 -> imgNext.setImageResource(R.drawable.triangle)
         }
     }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 99) {
+            intent = Intent(this@MainActivity, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+    }
+
+
 }
