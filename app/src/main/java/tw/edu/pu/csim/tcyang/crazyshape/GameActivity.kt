@@ -62,7 +62,7 @@ class GameActivity : AppCompatActivity() {
         //val outputs = model.process(image)
         //val probability = outputs.probabilityAsCategoryList
 
-        val outputs = model.process(image)
+        val outputs = model.process (image)
                 .probabilityAsCategoryList.apply {
                     sortByDescending { it.score } // 排序，高匹配率優先
                 }.take(1)  //取最高的1個
