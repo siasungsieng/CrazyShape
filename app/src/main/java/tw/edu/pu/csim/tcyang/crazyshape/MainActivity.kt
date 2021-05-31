@@ -23,12 +23,15 @@ class MainActivity : AppCompatActivity() {
             .override(800, 600)
 
             .into(imageTitle)
+        RndShape()
 
         Toast.makeText(baseContext, "作者：謝純善", Toast.LENGTH_LONG).show()
 
         imgNext.setOnLongClickListener(object : View.OnLongClickListener {
             override fun onLongClick(p0: View?): Boolean {
-                intent = Intent(this@MainActivity, GameActivity::class.java)
+                intent = Intent(this@MainActivity, GameActivity::class.java).apply {
+                    putExtra("形狀",Flog)
+                }
                 startActivity(intent)
                 return true
             }
